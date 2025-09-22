@@ -9,6 +9,7 @@ import adminRoutes from "./routes/admin.js";
 import bookingRoutes from "./routes/bookingRoutes.js"; // <-- Import new routes
 import getCarDetailsRoutes from "./routes/getCarDetails.js"; // <-- Import car routes
 import emailRoutes from "./routes/emailroutes.js";
+const fetch = require('node-fetch');
 dotenv.config();
 connectDB();
 
@@ -18,6 +19,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const PING_URL = "https://singhcabbackend.onrender.com";
+const FOURTEEN_MIN = 14 * 60 * 1000;
 
 // Make uploads folder static
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
@@ -33,4 +37,14 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+
+setInterval(async () => {
+  try {
+    const res = await fetch(PING_URL);
+    console.log(`[${new Date().toISOString()}] Pinged ${PING_URL} - Status:`, res.status);
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Ping failed:`, err.message);
+  }
+}, FOURTEEN_MIN);
+
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
