@@ -38,13 +38,13 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-setInterval(async () => {
-  try {
-    const res = await fetch(PING_URL);
-    console.log(`[${new Date().toISOString()}] Pinged ${PING_URL} - Status:`, res.status);
-  } catch (err) {
-    console.error(`[${new Date().toISOString()}] Ping failed:`, err.message);
-  }
-}, FOURTEEN_MIN);
+// setInterval(async () => {
+//   try {
+//     const res = await fetch(PING_URL);
+//     console.log(`[${new Date().toISOString()}] Pinged ${PING_URL} - Status:`, res.status);
+//   } catch (err) {
+//     console.error(`[${new Date().toISOString()}] Ping failed:`, err.message);
+//   }
+// }, FOURTEEN_MIN);
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
