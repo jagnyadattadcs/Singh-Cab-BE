@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 const PING_URL = "https://singhcabbackend.onrender.com";
-const FOURTEEN_MIN = 1 * 60 * 1000;
+const FOURTEEN_MIN = 14 * 60 * 1000;
 
 // Make uploads folder static
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
